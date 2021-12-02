@@ -1,16 +1,17 @@
 
+from datetime import datetime
 
 from pcb import Pcb
 
 
-process_queueu = [[Pcb('Adrian',1,1,'agora',0,10),Pcb('Moagne',2,2,'agora',1,15),Pcb('Nery',3,3,'agora',3,5)],[Pcb('Carvalho',4,4,'agora',5,7)]]
+process_queueu = [[Pcb('Adrian',1,1,datetime.now().strftime("%H:%M:%S"),0,10),Pcb('Moagne',2,2,'agora',1,15),Pcb('Nery',3,3,'agora',3,5)],[Pcb('Carvalho',4,4,'agora',5,7)]]
 
 
 
 def round(process_queueu,quantum):
     t = 0
     for i in range(len(process_queueu)):
-        process_queueu[i].sort(key = lambda x : x.prior, reverse =True)
+        process_queueu[i].sort(key = lambda x : x.prior, reverse = True)
         remain_burst_time =[0] * len(process_queueu[i])
         for j in range(len(process_queueu[i])):
             remain_burst_time[j] = process_queueu[i][j].burst_time
@@ -41,3 +42,7 @@ round(process_queueu=process_queueu, quantum=5)
 for i in range(len(process_queueu)):
     for x in range(len(process_queueu[i])):
         print('Waiting Time :' ,process_queueu[i][x].wating_time, 'Turn Around time: ',process_queueu[i][x].turn_around_time)
+
+
+print(process_queueu[0][2].data_hour)
+
